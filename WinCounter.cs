@@ -38,5 +38,25 @@ namespace LiveWinCounter
         {
             File.WriteAllText("wins.txt", "0");
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("wins.txt"))
+            {
+                File.WriteAllText("wins.txt", "0");
+                return;
+            }
+            string winsRaw = File.ReadAllText("wins.txt");
+            int wins = 0;
+            try
+            {
+                wins = Int32.Parse(winsRaw) - 1;
+            }
+            catch
+            {
+                wins = 0;
+            }
+            File.WriteAllText("wins.txt", wins.ToString());
+        }
     }
 }
